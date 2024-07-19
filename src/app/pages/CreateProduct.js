@@ -30,7 +30,7 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="max-w-lg text-black mx-auto p-4">
+    <div className="max-w-lg  text-black mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Create New Product</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -39,7 +39,7 @@ const CreateProduct = () => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
           />
         </div>
         <div>
@@ -48,7 +48,7 @@ const CreateProduct = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows="3"
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
           />
         </div>
         <div>
@@ -57,7 +57,7 @@ const CreateProduct = () => {
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
           />
         </div>
         <div>
@@ -66,7 +66,7 @@ const CreateProduct = () => {
             type="number"
             value={rating}
             onChange={(e) => setRating(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
           />
         </div>
         <div>
@@ -75,7 +75,7 @@ const CreateProduct = () => {
             type="text"
             value={tags}
             onChange={(e) => setTags(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm"
           />
         </div>
         {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -83,7 +83,7 @@ const CreateProduct = () => {
         <button
           type="submit"
           disabled={loading}
-          className={`mt-4 px-4 py-2 text-white font-semibold rounded-md shadow-sm ${loading ? 'bg-gray-400' : 'bg-indigo-600 hover:bg-indigo-700'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+          className={`mt-4 px-4 py-2 text-white font-semibold rounded-md shadow-sm ${loading ? 'bg-gray-400' : 'bg-gray-600 hover:bg-gray-700'} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500`}
         >
           {loading ? 'Creating...' : 'Create Product'}
         </button>

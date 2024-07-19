@@ -18,11 +18,20 @@ export default function Home() {
   const [editingProductId, setEditingProductId] = useState(null);
 
   useEffect(() => {
-    fetchProducts()
-      .then(setProducts)
-      .catch(err => setError('Error loading products: ' + err.message))
-      .finally(() => setLoading(false));
-  }, []);
+    const loadProducts = async () => {
+      try {
+        const data = await fetchProducts(searchTerm);
+        console.log('Fetched products:', data); // Debugging
+        setProducts(data);
+      } catch (err) {
+        setError('Error loading products: ' + err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, [searchTerm]);
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -53,8 +62,10 @@ export default function Home() {
   };
 
   const filteredProducts = products.filter(product =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    product.title && product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  console.log('Filtered products:', filteredProducts);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -71,8 +82,9 @@ export default function Home() {
   };
 
   return (
-    <main className="bg-gray-200 min-h-screen p-6">
-      <div className="container mx-auto max-w-5xl">
+    <main className="relative bg-gray-200 text-black min-h-screen p-6">
+      {/* Background content */}
+      <div className={`container mx-auto max-w-5xl ${showCreateDropdown ? 'blur-sm' : ''}`}>
         <h1 className="text-4xl font-semibold mb-6 text-gray-800">Product Management</h1>
         
         <div className="flex text-black items-center mb-6">
@@ -85,7 +97,7 @@ export default function Home() {
           />
           <button
             onClick={() => setShowCreateDropdown(!showCreateDropdown)}
-            className="ml-4 px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition ease-in-out duration-150"
+            className="ml-4 px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition ease-in-out duration-150"
           >
             Create Product
           </button>
@@ -108,7 +120,7 @@ export default function Home() {
             />
             
             {editingProductId !== null && (
-              <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-70">
+              <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-70 z-20">
                 <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
                   <EditProduct
                     productId={editingProductId}
@@ -127,16 +139,20 @@ export default function Home() {
             />
           </>
         )}
-        
-        {showCreateDropdown && (
-          <div className="absolute top-10 mt-2 w-80 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+      </div>
+
+      {/* Blurred Background */}
+      {showCreateDropdown && (
+        <>
+          <div className="fixed inset-0 bg-gray-800 bg-opacity-30 z-10" />
+          <div className="fixed top-24 left-1/2 transform -translate-x-1/2 w-1/2 bg-white border border-gray-300 rounded-lg shadow-lg z-20">
             <CreateProduct
               onClose={() => setShowCreateDropdown(false)}
               onProductCreated={handleProductCreated}
             />
           </div>
-        )}
-      </div>
+        </>
+      )}
     </main>
   );
 }

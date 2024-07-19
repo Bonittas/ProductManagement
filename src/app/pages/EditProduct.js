@@ -95,7 +95,7 @@ export default function EditProduct({ productId, onClose, onProductUpdated }) {
             className="block w-full mt-1 border border-gray-300 rounded p-2"
           />
         </label>
-          <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+          <button type="submit" className="mt-4 px-4 py-2 bg-gray-500 text-white rounded hover:bg-blue-600">
             Update Product
           </button>
         </form>
