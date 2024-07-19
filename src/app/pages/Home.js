@@ -75,17 +75,17 @@ export default function Home() {
       <div className="container mx-auto max-w-5xl">
         <h1 className="text-4xl font-semibold mb-6 text-gray-800">Product Management</h1>
         
-        <div className="flex items-center mb-6">
+        <div className="flex text-black items-center mb-6">
           <input
             type="text"
             placeholder="Search products..."
             value={searchTerm}
             onChange={handleSearch}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition ease-in-out duration-150"
+            className="w-full px-4 py-2 text-black border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 transition ease-in-out duration-150"
           />
           <button
             onClick={() => setShowCreateDropdown(!showCreateDropdown)}
-            className="ml-4 px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition ease-in-out duration-150"
+            className="ml-4 px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition ease-in-out duration-150"
           >
             Create Product
           </button>
@@ -129,7 +129,7 @@ export default function Home() {
         )}
         
         {showCreateDropdown && (
-          <div className="absolute right-0 mt-2 w-80 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+          <div className="absolute top-10 mt-2 w-80 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
             <CreateProduct
               onClose={() => setShowCreateDropdown(false)}
               onProductCreated={handleProductCreated}

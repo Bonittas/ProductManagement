@@ -21,8 +21,7 @@ const CreateProduct = () => {
       await createProduct({ title, description, price, rating, tags: tags.split(',') });
       setSuccess('Product successfully created!');
       setTimeout(() => {
-        window.location.href = '/'; // Redirect to home after showing success message
-      }, 2000); // Adjust the timeout duration as needed
+      }, 2000); 
     } catch (err) {
       setError('Failed to create product');
     } finally {

@@ -1,4 +1,3 @@
-// services/productService.js
 const BACKEND_API_URL = 'https://dummyjson.com/products';
 
 export async function fetchProducts(searchQuery = '') {
@@ -57,7 +56,7 @@ export async function createProduct(product) {
 
 export async function updateProduct(id, product) {
   try {
-    const response = await fetch(`${BACKEND_API_URL}/${id}`, {
+    const response = await fetch(`https://dummyjson.com/products/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

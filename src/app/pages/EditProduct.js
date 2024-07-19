@@ -1,4 +1,3 @@
-// components/EditProduct.js
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -12,7 +11,6 @@ export default function EditProduct({ productId, onClose, onProductUpdated }) {
   const [rating, setRating] = useState('');
   const [tags, setTags] = useState('');
   const [error, setError] = useState('');
-
   useEffect(() => {
     const loadProduct = async () => {
       try {
@@ -22,14 +20,13 @@ export default function EditProduct({ productId, onClose, onProductUpdated }) {
         setDescription(fetchedProduct.description);
         setPrice(fetchedProduct.price);
         setRating(fetchedProduct.rating);
-        setTags(fetchedProduct.tags.join(', '));
+        setTags(fetchedProduct.tags ? fetchedProduct.tags.join(', ') : '');
       } catch (error) {
         setError('Failed to load product details');
       }
     };
     loadProduct();
   }, [productId]);
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -38,7 +35,7 @@ export default function EditProduct({ productId, onClose, onProductUpdated }) {
         description,
         price,
         rating,
-        tags: tags.split(',').map(tag => tag.trim())
+        tags: tags ? tags.split(',').map(tag => tag.trim()) : []
       });
       onProductUpdated(updatedProduct);
       onClose();
@@ -46,9 +43,10 @@ export default function EditProduct({ productId, onClose, onProductUpdated }) {
       setError('Failed to update product');
     }
   };
+  
 
   return (
-    <div className="p-4 text-black">
+    <div className="p-4 text-black ">
       <h2 className="text-xl font-semibold mb-4">Edit Product</h2>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       {product ? (
@@ -89,14 +87,14 @@ export default function EditProduct({ productId, onClose, onProductUpdated }) {
             />
           </label>
           <label className="block mb-2">
-            Tags (comma separated)
-            <input
-              type="text"
-              value={tags}
-              onChange={(e) => setTags(e.target.value)}
-              className="block w-full mt-1 border border-gray-300 rounded p-2"
-            />
-          </label>
+          Tags (comma separated)
+          <input
+            type="text"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+            className="block w-full mt-1 border border-gray-300 rounded p-2"
+          />
+        </label>
           <button type="submit" className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
             Update Product
           </button>
