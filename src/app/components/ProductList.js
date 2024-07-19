@@ -10,7 +10,7 @@ const ProductList = ({ products, onDelete, onEdit }) => {
             <p className="text-gray-700 mb-2">{product.description}</p>
             <p className="text-gray-800 font-medium">Price: <span className="text-green-600">${product.price.toFixed(2)}</span></p>
             <p className="text-gray-800 font-medium">Rating: <span className="text-yellow-500">{product.rating.toFixed(1)}</span></p>
-            <p className="text-gray-800 font-medium">Tags: <span className="text-gray-600">{product.tags.join(', ')}</span></p>
+            {/* <p className="text-gray-800 font-medium">Tags: <span className="text-gray-600">{product.tags.join(', ')}</span></p> */}
           </div>
           <div className="flex-shrink-0 flex gap-2">
             <button
