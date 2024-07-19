@@ -6,7 +6,7 @@ import ProductList from '../components/ProductList';
 import Pagination from '../components/Pagination';
 import CreateProduct from './CreateProduct';
 import EditProduct from './EditProduct';
-
+import Landing from "../components/Landing"
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -82,10 +82,10 @@ export default function Home() {
   };
 
   return (
+    <><Landing/>
     <main className="relative bg-gray-200 text-black min-h-screen p-6">
-      {/* Background content */}
       <div className={`container mx-auto max-w-5xl ${showCreateDropdown ? 'blur-sm' : ''}`}>
-        <h1 className="text-4xl font-semibold mb-6 text-gray-800">Product Management</h1>
+        <h1 className="text-4xl font-semibold text-center font-serif mb-6 text-gray-800">Product Management</h1>
         
         <div className="flex text-black items-center mb-6">
           <input
@@ -93,11 +93,11 @@ export default function Home() {
             placeholder="Search products..."
             value={searchTerm}
             onChange={handleSearch}
-            className="w-full px-4 py-2 text-black border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 transition ease-in-out duration-150"
+            className="w-1/2 px-4 py-3 bg-white left-72 absolute rounded -top-72 left-64 text-black border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-500 transition ease-in-out duration-150"
           />
           <button
             onClick={() => setShowCreateDropdown(!showCreateDropdown)}
-            className="ml-4 px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition ease-in-out duration-150"
+            className="absolute right-32 top-10 mr-4 px-6 py-2 bg-gray-500 text-white rounded-full hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition ease-in-out duration-150"
           >
             Create Product
           </button>
@@ -112,13 +112,13 @@ export default function Home() {
             {filteredProducts.length === 0 && searchTerm && (
               <p className="text-gray-600">No results found for "{searchTerm}".</p>
             )}
-            
+            <div className=''>
             <ProductList
               products={currentProducts}
               onDelete={handleDelete}
               onEdit={handleDropdownToggle}
             />
-            
+            </div>
             {editingProductId !== null && (
               <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-70 z-20">
                 <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
@@ -141,7 +141,6 @@ export default function Home() {
         )}
       </div>
 
-      {/* Blurred Background */}
       {showCreateDropdown && (
         <>
           <div className="fixed inset-0 bg-gray-800 bg-opacity-30 z-10" />
@@ -154,5 +153,6 @@ export default function Home() {
         </>
       )}
     </main>
+    </>
   );
 }
